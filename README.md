@@ -19,7 +19,15 @@ import mountEmscriptenFileExplorer from "emscripten-fs-file-explorer-ui";
 
 async function main() {
   const emscriptenScript = await import("emscripten-script.js");
-  const emscriptenModule = await emscriptenScript.default();
+  const emscriptenModule = await emscriptenScript.default({
+    // If you don't want to run your `main`
+    // but simply explore the FS, pass this.
+    // noInitialRun: true,
+
+    // If your `main` completes, the explorer will stop working,
+    // unless you pass this.
+    // noExitRuntime: true,
+  });
 
   const container = document.getElementById("emscripten-explorer");
 
